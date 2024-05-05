@@ -1,5 +1,23 @@
 import numpy as np
-from kinematics import *
+from Kinematics import *
+
+def triad(v,w):
+    nz = np.linalg.norm(v)
+
+    if nz == 0:
+        c_triad = np.eye(3)
+    else:
+        x = v / np.linalg.norm(v)
+        z = np.cross(x, w)
+        z = z / np.linalg.norm(z)
+        y = np.cross(z, x)
+        c_triad = np.array([x, y, z]).T
+
+    return c_triad
+
+def triad2(vb,wb,vr,wr):
+    c_triad = triad(vb,wb).T * triad(vr,wr)
+    return c_triad
 
 def rigbody (x, ext_torque, tensin,
              teninv, mag_moment=np.zeros(3), magnetic_field=np.zeros(3)):
