@@ -4,13 +4,13 @@ import matplotlib.pyplot as plt
 #Example for 3D plotting with matplotlib
 
 # example 1 : random point plotting
-# dim3D = plt.axes(projection="3d")
-# xData = np.random.randint(0,100,(500,))
-# yData = np.random.randint(0,100,(500,))
-# zData = np.random.randint(0,100,(500,))
+dim3D = plt.axes(projection="3d")
+xData = np.random.randint(0,100,(500,))
+yData = np.random.randint(0,100,(500,))
+zData = np.random.randint(0,100,(500,))
 
-# dim3D.scatter(xData,yData,zData,marker="o",alpha=0.5)
-# plt.show()
+dim3D.scatter(xData,yData,zData,marker="o",alpha=0.5)
+plt.show()
 
 # example 2 : plotting graph with labeling
 # dim3D = plt.axes(projection="3d")
@@ -94,4 +94,3 @@ import matplotlib.pyplot as plt
 # ax.grid(True)
 
 # plt.show()
-
