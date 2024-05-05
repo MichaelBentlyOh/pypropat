@@ -3,8 +3,8 @@ import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 
 # Time setup
-dt = 0.001
-t = np.arange(0, 50, dt)
+dt = 0.01
+t = np.arange(0, 5 + dt, dt)  # include endpoint
 
 # Phi calculation
 phi = np.cumsum(np.ones_like(t) * np.pi / 180) % (2 * np.pi)
@@ -58,11 +58,17 @@ def update_quivers(num):
     ax.set_title('Quiver Simulation Time : {:.2f}s'.format(t[num]))
 
 # Creating animation
-anim = FuncAnimation(fig, update_quivers, frames=1000, interval=10)
-# To see longer simulation result => increase frames
-# for faster move => decrease interval (not sure right now)
+anim = FuncAnimation(fig, update_quivers, frames=len(t), interval=0.1)
+# fig : figure object
+# func : function that will be iterated
+# frames : number of iteration
+# interval : delay time between frames in millisecond
+# blit : option for optimizing drawing (don't use right now)
 
 # To save the animation, uncomment the following line:
 # anim.save('quiver_moving.gif', writer='pillow')
+
+# To save the animation as mp4, uncomment the following line:
+# https://blog.naver.com/ahn_ss75/222671709830
 
 plt.show()
