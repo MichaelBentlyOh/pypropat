@@ -437,7 +437,7 @@ def quatrmx(quaternion):
 
     Returns:
     rot_mat : np.array
-        Rotation matrix (3, 3)
+        Rotation matrix (3, 3) as euler rotation matrix (DCM)
     """
     q1q, q2q, q3q, q4q = quaternion[0]**2, quaternion[1]**2, quaternion[2]**2, quaternion[3]**2
     q12, q13, q14 = 2*quaternion[0]*quaternion[1], 2*quaternion[0]*quaternion[2], 2*quaternion[0]*quaternion[3]
@@ -451,6 +451,14 @@ def quatrmx(quaternion):
     return rot_mat
 
 def quatexyz(q):
+    """
+    Parameters:
+    quaternion : np.array
+        Attitude quaternion [q1, q2, q3, q4] where Q = q1 i + q2 j + q3 k + q4
+    Returns:
+    rot_mat : np.array
+        Rotation matrix (3, 3) as a xyz sequence rotation
+    """
     if q.ndim == 1:
         q = q.reshape(4, 1)
     
@@ -465,7 +473,15 @@ def quatexyz(q):
 
     return euler_angle
 
-def quatexzxz(q):
+def quatezxz(q):
+    """
+    Parameters:
+    quaternion : np.array
+        Attitude quaternion [q1, q2, q3, q4] where Q = q1 i + q2 j + q3 k + q4
+    Returns:
+    rot_mat : np.array
+        Rotation matrix (3, 3) as a zyz sequence rotation
+    """
     if q.ndim == 1:
         q = q.reshape(4, 1)
     
@@ -513,3 +529,17 @@ def exyzquat(euler_angles):
     rot_mat=exyzrmx(euler_angles)
     quat = rmxquat(rot_mat)
     return quat
+
+def sangvel(w):
+    skew_ang_vel = np.array([
+        [  0    ,  w[3]  ,  -w[2]    ,   w[1] ],
+        [-w[3]  ,   0    ,   w[1]    ,   w[2] ],
+        [ w[2]  ,   0    ,   w[1]    ,   w[2] ],
+        [-w[1]  , -w[2]  ,  -w[3]    ,    0   ]
+    ])
+    return skew_ang_vel
+
+def proximus(angleinp, angleprox):
+    test = 2*np.pi
+    angle = angleprox + np.mod((angleinp-angleprox+test/2), test)-test/2
+    return angle
