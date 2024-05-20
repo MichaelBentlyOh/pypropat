@@ -1,5 +1,10 @@
 import numpy as np
 
+'''
+Rotation method follows DCM for frame change.
+Original propat follows Rotaion Matrix; a transpose of DCM.
+'''
+
 def cross_matrix(w):
     """
     Skew matrix for cross product
@@ -44,6 +49,42 @@ def rotmaz(angle):
     rot_mat = np.array([[ cosine,  sine,     0],
                         [ -sine , cosine,    0],
                         [    0  ,    0,      1]])
+    return rot_mat
+
+def rotmax_DCM(angle):
+    """
+    rotation matrix for x-axis rotation
+    angle : radian angle
+    """
+    cosine = np.cos(angle)
+    sine = np.sin(angle)
+    rot_mat = np.array([[1,      0,   0  ],
+                        [0, cosine, -sine],
+                        [0,   sine,cosine]])
+    return rot_mat
+
+def rotmay_DCM(angle):
+    """
+    rotation matrix for y-axis rotation
+    angle : radian angle
+    """
+    cosine = np.cos(angle)
+    sine = np.sin(angle)
+    rot_mat = np.array([[cosine  ,0,  sine ],
+                        [   0    ,1,    0  ],
+                        [ -sine  ,0, cosine]])
+    return rot_mat
+
+def rotmaz_DCM(angle):
+    """
+    rotation matrix for y-axis rotation
+    angle : radian angle
+    """
+    cosine = np.cos(angle)
+    sine = np.sin(angle)
+    rot_mat = np.array([[ cosine,  -sine,   0],
+                        [ sine , cosine,    0],
+                        [    0  ,    0,     1]])
     return rot_mat
 
 def eulerrmx(euler_angle, euler_vector):
