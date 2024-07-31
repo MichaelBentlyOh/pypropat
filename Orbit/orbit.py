@@ -460,7 +460,7 @@ def igrf_field(date, alt, colat, elong):
 	field = x
 	return field
 
-def inertial_to_terrestial(tesig, xi):
+def inertial_to_terrestrial(tesig, xi):
 	xterrestial = np.matmul(np.concatenate([[xi[0:3]],[xi[3:6]]],0),np.transpose(kinematics.rotmaz(tesig)))
 	xterrestial = np.concatenate([xterrestial[0],xterrestial[1]],0)
 	return xterrestial
@@ -733,7 +733,7 @@ def sunsync_sma(exc, inc, q):
 
 	return smaxis
 
-def terrestial_to_inertial(tesig, xt):
+def terrestrial_to_inertial(tesig, xt):
 	xinert = np.matmul(np.concatenate([[xt[0:3]],[xt[3:6]]],0),np.transpose(kinematics.rotmaz(-tesig)))
 	xinert = np.concatenate([xinert[0],xinert[1]],0)
 	return xinert
