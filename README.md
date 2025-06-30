@@ -19,4 +19,4 @@ E-mail : rhksdud99@gmail.com, kkyeong99@yonsei.ac.kr
 
 Affiliation : Korea AeroSpace Administration
 
-E-mail : jshh01@korea.kr, jssh01@yonsei.ac.kr
+E-mail : jssh01@yonsei.ac.kr
