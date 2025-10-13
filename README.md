@@ -1,7 +1,7 @@
 # pypropat
 An orbit propagation library that converts the PROPAT MATLAB toolbox to Python
 
-Pypropat is now being renewed! Please wait for the next update!!
+# Pypropat is now being renewed! Please wait for the next update!!
 
 # Contributors
 
